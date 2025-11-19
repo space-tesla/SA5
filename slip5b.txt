@@ -1,0 +1,31 @@
+Slip 5b 
+Q2 Write a program to connect with the available Wi-Fi using Arduino. 
+#include <SPI.h> 
+#include <WiFiNINA.h> 
+ 
+char ssid[] = "Wifi name";         // Your WiFi name 
+char pass[] = "secret password";   // Your WiFi password 
+ 
+int status = WL_IDLE_STATUS;       // WiFi status variable 
+ 
+void setup() { 
+  Serial.begin(9600); 
+  while (!Serial);                 // Wait for serial monitor 
+ 
+  // Try connecting to WiFi 
+  while (status != WL_CONNECTED) { 
+    Serial.print("Connecting to "); 
+    Serial.println(ssid); 
+ 
+    status = WiFi.begin(ssid, pass);   // Start WiFi connection 
+    delay(5000);                       // Wait 5 seconds 
+  } 
+ 
+  // When connected 
+  Serial.print("IP address: "); 
+  Serial.println(WiFi.localIP());      // Print local IP 
+} 
+ 
+void loop() { 
+  // Nothing required here 
+}
